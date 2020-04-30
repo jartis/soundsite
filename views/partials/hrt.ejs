@@ -1,0 +1,36 @@
+<script>
+var system = makeSystem(scQtr);
+system.addStave({
+    voices: [score.voice(
+        score.beam(score.notes('g3/16, c4/16, g4/16, f4/16')
+        .concat(score.notes('f4/h, d4/q'))))]
+}).addClef('treble').addTimeSignature('4/4');
+
+system = makeSystem(scQtr);
+system.addStave({
+    voices: [score.voice(score.notes('f4/q, d4/q')
+    .concat(score.beam(score.notes('b4/8[stem="up"], g4/8[stem="up"]')))
+    .concat(score.notes('a4/q')))]
+});
+
+system = makeSystem(scQtr);
+system.addStave({
+    voices: [score.voice(        
+        score.beam(score.notes('g3/16, c4/16, g4/16, f4/16')
+        .concat(score.notes('f4/h, d4/q'))))]
+});
+
+system = makeSystem(scQtr);
+system.addStave({
+    voices: [score.voice(score.notes('f4/q, d4/q, b4/16/r')
+    .concat(score.beam(score.notes('b4/16[stem="up"], b4/16[stem="up"], b4/16[stem="up"]')))
+    .concat(score.beam(score.notes('c5/16[stem="up"], b4/16[stem="up"], a4/16[stem="up"], g4/16[stem="up"]'))))]
+});
+vf.draw();
+document.getElementById("score").classList.add("ccenter");
+
+document.getElementById('fgcolor').value = 'FF0000';
+document.getElementById('bgcolor').value = 'FFEE33';
+updateBG();
+updateFG();
+</script>

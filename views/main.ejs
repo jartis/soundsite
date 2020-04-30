@@ -1,0 +1,60 @@
+<%- include('partials/header') %>
+<%- include('partials/about') %>
+<div class="container" id="container" style="width: 100%; height: 100%;">
+    <div id="score">
+    </div>
+</div>
+<script>
+
+// Handlers for color change
+function updateBG() {
+    document.getElementById('pg').style.backgroundColor = '#' + document.getElementById('bgcolor').value;
+}
+function updateFG() {
+    $('path').each(function() {
+        $(this).attr('fill', '#' + document.getElementById('fgcolor').value)
+        $(this).attr('stroke', '#' + document.getElementById('fgcolor').value)
+    });
+    $('rect').each(function() {
+        $(this).attr('fill', '#' + document.getElementById('fgcolor').value)
+        $(this).attr('stroke', '#' + document.getElementById('fgcolor').value)
+    });
+}
+
+function saveImage() {
+    domtoimage.toPng(document.getElementById('pg'))
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'sonartistry.png';
+        link.href = dataUrl;
+        link.click();
+    });
+}
+
+// Setup based on view
+var scQtr = Math.floor(window.innerWidth / 6);
+scWidth = scQtr * 4;
+
+const VF = Vex.Flow;
+var vf = new Vex.Flow.Factory({renderer: {elementId: 'score', width: scWidth}});
+var score = vf.EasyScore();
+
+score.set({ time: '4/4' });
+
+var x = 0;
+var y = 80;
+function makeSystem(width) {
+	var system = vf.System({ x: x, width: width, spaceBetweenStaves: 10 });
+	x += width;
+	return system;
+}
+
+updateBG();
+updateFG();
+</script>
+<% if (egg == "yellow") { %>
+    <%- include('partials/hrt') %>
+<% } else { %>
+    <%- include('partials/default') %>
+<% } %>
+<%- include('partials/footer') %>

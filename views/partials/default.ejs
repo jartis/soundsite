@@ -1,0 +1,22 @@
+<script>
+var system = makeSystem(scQtr);
+system.addStave({
+    voices: [score.voice(score.notes('G5/h, F5/q, B5/q'))]
+}).addClef('treble').addTimeSignature('4/4');
+
+system = makeSystem(scQtr)
+system.addStave({
+    voices: [score.voice(score.notes('E5/h, D5/q, G5/q'))]
+});
+system = makeSystem(scQtr)
+system.addStave({
+    voices: [score.voice(score.notes('C5/h, B4/q, E5/q'))]
+});
+system = makeSystem(scQtr)
+system.addStave({
+    voices: [score.voice(score.notes('A4/h, E5/h'))]
+});
+
+vf.draw();
+document.getElementById("score").classList.add("ccenter");
+</script>
